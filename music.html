@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://kit.fontawesome.com/d64d505cfa.js" crossorigin="anonymous"></script>
+    <title>music player</title>
+</head>
+<body>
+    <div class="container">
+        <div class="cen">
+            <nav>
+                <div  class="circle">
+                    <i class="fa-solid fa-angles-left"></i>
+                </div>
+                <div  class="circle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+            <img  class="image" src="https://tse4.explicit.bing.net/th?id=OIP.MzCZtuHLOE7mautDvLIJDAHaHa&pid=Api&P=0&h=180">
+            <h1>Lofi(sawre)</h1>
+            <p>~phantom movie</p>
+            <audio    id="song"> 
+                <source  src="Saware (Phantom)_64-(PagalWorld.Ink).mp3" type="audio/mpeg">
+
+            </audio>
+            <input type="range" value="0" id="bar">
+        <div class="controls">
+            <div><i class="fa-solid fa-backward"></i></div>
+            <div onclick="playpause()"><i class="fa-solid fa-play" id="ctrlicon"></i></div>
+            <div><i class="fa-solid fa-forward"></i></div>
+        </div>
+        </div>
+    </div>
+    <script>
+        let bar=document.getElementById("bar");
+        let song=document.getElementById("song");
+        let ctrlicon=document.getElementById("ctrlicon");
+song.onloadedmetadata=function()
+{
+  bar.max=song.duration;
+  bar.value=song.currentTime;
+}
+function playpause()
+{
+    if(ctrlicon.classList.contains("fa-pause"))
+    {
+        song.pause();
+        ctrlicon.classList.remove("fa-pause");
+        ctrlicon.classList.add("fa-play");
+
+    }
+        else
+    {
+        song.play();
+        ctrlicon.classList.add("fa-pause");
+        ctrlicon.classList.remove("fa-play");
+    }
+}
+
+setInterval(()=>{
+    bar.value=song.currentTime;
+},500)
+bar.onchange=function()
+{song.play();
+song.currentTime=bar.value;
+
+ctrlicon.classList.add("fa-pause");
+        ctrlicon.classList.remove("fa-play");
+}
+    </script>
+</body>
+
+
+</html>
